@@ -30,7 +30,7 @@ const Recipe = db.define('recipe', {
     defaultValue: 'Spaghetti'
   },
   directions: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(10000),
     defaultValue: 'We add a lot of salt to our pasta water (it makes the pasta taste delicious). For every 4 quarts (16 cups) of water, we add about one tablespoon of salt. This is perfect for cooking 1 pound of pasta.'
   },
   cookTime: {
@@ -41,8 +41,8 @@ const Recipe = db.define('recipe', {
     type: DataTypes.INTEGER,
     defaultValue: 2
   },
-  photoUrl: {
-    type: DataTypes.STRING,
+  photoUrl: { 
+    type: DataTypes.STRING(10000),
     defaultValue: 'https://unsplash.com/photos/PLyJqEJVre0'
   },
   category: {
