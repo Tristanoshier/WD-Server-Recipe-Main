@@ -1,24 +1,6 @@
-# Server Shell
+# Recipe Application
 
-This application is one of the many pre-made API's for the Web Development Blue Badge program. Do not clone this project simply download the zipped file and start using it on your main project. Once you are ready update the readme and create your own repository for the project that was given to you. The user, profile, apikey, group, membership, client have all been created for you.
-
-You will be asked to make sure that not only are we validating token but also making sure that the API key is valid as well. There is a middleware called (`validateApiKey`). See photo below.
-
-There is a `constants` file where if you are using the same word over and over you might want to make it a constant and just import it. It's much easier to update it in one place. Later when we get to unit testing this will make things easier.
-
-## Important Concepts to keep the code clean.
-
-- Make sure that the `Service` is doing the work and pushing the result back to the controller.
-- If you are finding yourself repeating code over and over. Make a helper file and import it.
-
-## Validate API Key Example
-
-![Validate Api Key](/documents/photos/validateApi-example.png)
-
-## You have access to JOI for validation
-
-![Validate Api Key](/documents/photos/joi-example.png)
-
+This application is one of the many pre-made API's for the Web Development Blue Badge program.
 # ENV Variables
 
 | Variable                | Description                                               |
