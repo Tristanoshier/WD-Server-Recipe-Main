@@ -1,0 +1,20 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Blue Badge API Documentation",
+    "description": "The documentation for the selected Blue Badge API",
+    "contact": {
+      "name": "API Dashboard",
+      "url": "http://localhost:8080/"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    
+  ],
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"]
+}

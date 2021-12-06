@@ -1,0 +1,68 @@
+.details {
+  width: 100%;
+}
+
+.group-detail-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  color: white;
+}
+
+.group-detail-title > h3 {
+  margin: 0;
+}
+
+.group-detail-content {
+  padding: 1em;
+  background-color: white;
+}
+
+.members {
+  background: linear-gradient(to right, rgb(69, 23, 70) , rgb(111, 39, 115));
+}
+
+.keys {
+  background: linear-gradient(to right, rgb(21, 9, 75), rgb(43, 21, 134));
+}
+
+.detail-list, .key-area {
+  margin: 2em 0;
+  padding: 0;
+}
+
+.member {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(111, 39, 115, 0.05);
+  padding: 1em;
+  border-radius: 5px;
+  width: fit-content;
+  margin: 1em 0;
+}
+
+.member > p {
+  margin-bottom: 0;
+  margin: 0 1em;
+  font-weight: bold;
+}
+
+.accordion-body > p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.key-view {
+  max-width: 375px;
+}
+
+.clipboard-copy {
+  background-color: #fff;
+}
+
+.clipboard-copy:hover {
+  cursor: pointer;
+}

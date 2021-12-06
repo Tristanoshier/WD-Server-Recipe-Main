@@ -1,0 +1,648 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "description": "This is the documentation page for Eleven Fifty Academy's Calorie Counter API.",
+    "version": "1.0.0",
+    "title": "Calorie Counter API",
+    "contact": {
+      "email": "helpdesk@elevenfifty.org"
+    }
+  },
+  "servers": [
+    {
+      "url": "TO BE ADDED"
+    },
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User Route",
+      "description": "Everything to do with Authentication"
+    },
+    {
+      "name": "Profile Route",
+      "description": "Viewing and Updating Profiles"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "View the splash page",
+        "responses": {
+          "200": {
+            "description": "Retrieve splash page",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "example": "<html><body><h1>Hello World!</h1></body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "summary": "Authenticate an existing user",
+        "description": "This route is used for authenticating an existing user, which will return a session token for the API. The User's ID is encoded in the payload of the Token, which will serve as an \"access card\" for future requests to the API.",
+        "tags": ["User Route"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "API KEY from your group",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "ElevenFiftyAcademyUser"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "_super_secret_password1234@1111!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A success message and the session Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "type": "number",
+                      "example": 25
+                    },
+                    "info": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "User Found"
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiZIjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKTk6yJV_adQssw5c"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/signup": {
+      "post": {
+        "summary": "Register a new user",
+        "description": "This route is used to create a new user for the application.",
+        "tags": ["User Route"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "API KEY from your group",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "ElevenFiftyAcademyUser"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "_super_secret_password1234@1111!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A success message and the session Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "type": "number",
+                      "example": 25
+                    },
+                    "info": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "User created must login to get token"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/profile/get": {
+      "get": {
+        "summary": "Get Profile Information",
+        "description": "Retreives the profile info",
+        "tags": ["Profile Route"],
+        "security": [
+          {
+            "SessionToken": ["logs:write"]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Session Token created during login",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "The entries for creating a new workout log",
+                "type": "object",
+                "properties": {
+                  "log": {
+                    "$ref": "#/components/schemas/Log"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Log create success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "format": "int32",
+                          "example": "1"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "test5"
+                        },
+                        "password": {
+                          "type": "string",
+                          "example": "$2b$10$UX7xdFqLmJhSKS06KGg/weX0LfxijHgyg6A7VMvh1e215lpLm9/fy"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "example": "2021-09-28T12:50:31.440Z"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "example": "2021-09-28T12:50:31.440Z"
+                        },
+                        "appId": {
+                          "type": "integer",
+                          "format": "int32",
+                          "example": "1"
+                        },
+                        "apikeyId": {
+                          "type": "string",
+                          "format": "nullable"
+                        },
+                        "profile": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer",
+                              "format": "int32",
+                              "example": "1"
+                            },
+                            "firstName": {
+                              "type": "string",
+                              "example": "Billy Kid"
+                            },
+                            "favoriteCuisine": {
+                              "type": "string",
+                              "example": "Pizza"
+                            },
+                            "createdAt": {
+                              "type": "string",
+                              "example": "2021-09-28T12:50:31.455Z"
+                            },
+                            "updatedAt": {
+                              "type": "string",
+                              "example": "2021-09-28T20:44:20.617Z"
+                            },
+                            "userId": {
+                              "type": "integer",
+                              "format": "int32",
+                              "example": "1"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "info": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Get Request Successful"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logs/mylogs": {
+      "get": {
+        "summary": "Retrieve User's workout logs",
+        "description": "This route will retrieve all logs owned by the authenticated user. An authenticated user is defined by a token attached to the request.",
+        "tags": ["logs"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Session Token created during login",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "SessionToken": ["logs:read"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the User's workout logs!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Log"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error retrieving User's workout logs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "An error occurred when retrieving logs: [error message here]"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logs/{id}": {
+      "get": {
+        "summary": "Retrieve a user's specific workout log",
+        "description": "This route will retrieve a specific workout log denoted by the id given",
+        "tags": ["logs"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Session Token created during login",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "SessionToken": ["logs:write"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Specified workout log retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Log"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unable to find specific workout log. It may not exist, or the authenticated user does not own it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Workout log doesn't exist, or the authenticated user doesn't own it."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error retrieving specified workout log",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Error retrieving workout log: [Error message here]"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logs/update/{id}": {
+      "put": {
+        "summary": "Update a user's workout log",
+        "description": "This route will update a specific workout log denoted by the id specified and using the new data supplied in the body of the request.",
+        "tags": ["logs"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Session Token created during login",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "SessionToken": ["logs:write"]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "The entries for creating a new workout log",
+                "type": "object",
+                "properties": {
+                  "log": {
+                    "$ref": "#/components/schemas/Log"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Log update success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Workout log updated!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Log to update doesn't exist. If you get this error, make sure you are passing the correct ID in the url",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Error: Specified workout log does not exist"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error updating user's workout log",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Error updating workout log: No data in the request body!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logs/delete/{id}": {
+      "delete": {
+        "summary": "Delete a specific User workout log",
+        "description": "This route will delete a workout log specified by the ID in the url, verifying that the authenticated user owns the specific workout log",
+        "tags": ["logs"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Session Token created during login",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "SessionToken": ["logs:write"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Log delete success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Workout log deleted"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Log to delete doesn't exist, or the authenticated user doesn't own it. If you get this error, make sure you are passing the correct ID in the url, and the proper user is authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Error in log Delete: Unable to delete this log. It does not exist, or you do not own it!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error deleting user's workout log",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Error in log Delete: [Error message here]"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "SessionToken": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Log": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Type of workout.",
+            "example": "Fistpumps"
+          },
+          "definition": {
+            "type": "string",
+            "description": "Detailed information about the workout.",
+            "example": "12 reps, 3 sets"
+          },
+          "result": {
+            "type": "string",
+            "description": "How the user felt after this workout",
+            "example": "Felt decent, but I do need a nap now."
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

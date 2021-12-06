@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+  <form id="register-form" class="auth-form shadow rounded" method="POST">
+    <legend>Registration</legend>
+    {% if info %}
+      <div class="alert alert-danger" role="alert">
+        {{ info.message }}
+      </div>
+    {% endif %}
+    <div class="mb-3">
+      <label for="nameInput" class="form-label">Your Name:</label>
+      <input
+        type="text"
+        name="clientName"
+        id="nameInput"
+        class="form-control"
+        placeholder="Ex: Jane/John Doe">
+    </div>
+    <div class="mb-3">
+      <label for="emailInput" class="form-label">
+        Email Address
+      </label>
+      <input 
+        type="email" 
+        class="form-control"
+        id="emailInput" 
+        name="email"
+        placeholder="Ex: myemail@mail.com">
+    </div>
+    <div class="mb-3">
+      <label for="passwordInput" class="form-label">
+        Account Password
+      </label>
+      <input
+        type="password"
+        class="form-control"
+        id="passwordInput"
+        name="password">
+    </div>
+    <div class="mb-3">
+      <label for="passwordInput" class="form-label">
+        Verify Password
+      </label>
+      <input
+        type="password"
+        class="form-control"
+        id="passwordVerify"
+        name="verifyPassword">
+    </div>
+    <div class="alert mb-3 alert-danger visually-hidden" role="alert" id="passwordAlert">
+      Your passwords do not match!
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+    <small>Already have an account? <a href="/dashboard/login">Login here</a></small>
+  </form>
+  
+{% endblock %}

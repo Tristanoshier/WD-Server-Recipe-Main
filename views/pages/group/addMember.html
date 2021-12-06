@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<br>
+<a href="{{ group_detail_url }}" class="btn btn-outline-secondary">
+  <i class="bi bi-arrow-left"></i>
+  Go Back
+</a>
+
+<form class="auth-form shadow rounded" method="post">
+  <legend>Add Member</legend>
+  {% if info %}
+    <div class="alert alert-danger" role="alert">
+      {{ info.message }}
+    </div>
+  {% endif %}
+
+  <div class="mb-3">
+    <label for="emailInput" class="form-label">
+      Member Email
+    </label>
+    <input class="form-control" type="email" name="email" id="emailInput">
+  </div>
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-success">Add Member</button>
+  </div>
+
+
+</form>
+
+{% endblock %}

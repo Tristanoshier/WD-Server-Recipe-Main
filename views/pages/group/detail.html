@@ -1,0 +1,111 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+  <h1 class="page-title"><i class="bi bi-people-fill"></i> {{ name }}</h1>
+  <section class="details">
+    <div class="shadow mb-5">
+      <div class="rounded-top group-detail-title members">
+        <h3>Members</h3>
+        <a href="{{ add_member_url }}" class="btn btn-success">
+          <i class="bi bi-person-plus-fill"></i>
+        </a>
+      </div>
+      <div class="group-detail-content rounded-bottom">
+        <ul class="detail-list">
+          {% for member in members %}
+            <li class="member">
+              <p>
+                {{ member.name }}
+              </p>
+              <a href="/dashboard/group/{{ groupId }}/removemember/{{ member.id }}" class="btn btn-outline-danger">
+                <i class="bi bi-person-dash-fill"></i>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+    </div>
+    <div class="shadow mb-5">
+      <div class="group-detail-title rounded-top keys">
+        <h3>Api Keys</h3>
+        <a class="btn btn-success" href="{{ create_url }}">
+          <i class="bi bi-key-fill"></i>
+        </a>
+      </div>
+      <div class="group-detail-content rounded-bottom">
+
+        <div class="key-area">
+  
+          {% if api_keys.length > 0 %}
+            <div class="accordion">
+              {% for key in api_keys %}
+                <div class="accordion-item" id="apiKeys">
+                  <h2 class="accordion-header" id="heading{{ loop.index }}">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse{{ loop.index }}"
+                      aria-expanded="false"
+                      aria-controls="collapse{{ loop.index }}"
+                    >
+                      {{ key.name }}
+                    </button>
+                  </h2>
+                  <div
+                    id="collapse{{ loop.index }}"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading{{ loop.index }}"
+                    data-bs-parent="#apiKeys"
+                  >
+                    <div class="accordion-body">
+  
+                      <div class="input-group">
+                        <input
+                          class="form-control key-view"
+                          type="text"
+                          value="{{ key.key }}"
+                          aria-describedby="basic-addon{{ loop.index }}"
+                          disabled
+                          readonly
+                        >
+                        <span
+                          id="basic-addon{{ loop.index }}"
+                          class="input-group-text clipboard-copy"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="bottom"
+                          title="Copy To Clipboard"
+                          onclick="copyToClipboard('{{ key.key }}')"
+                        >
+                          <i class="bi bi-clipboard"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p><b>No API Keys Created</b></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+
+    function copyToClipboard (value) {
+      var temp = document.body.appendChild(document.createElement('input'))
+      temp.value = value;
+      temp.focus();
+      temp.select();
+      document.execCommand('copy');
+      temp.parentNode.removeChild(temp);
+    }
+
+  </script>
+
+{% endblock %}

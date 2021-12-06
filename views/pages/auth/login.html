@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block content %}
+  <form id="login-form" class="auth-form shadow rounded" method="POST">
+    <legend>Member Login</legend>
+    {% if info %}
+      <div class="alert alert-danger" role="alert">
+        {{ info.message }}
+      </div>
+    {% endif %}
+    <div class="mb-3">
+      <label for="emailInput" class="form-label">
+        Email Address
+      </label>
+      <input 
+        type="email" 
+        class="form-control"
+        id="emailInput" 
+        name="email">
+    </div>
+    
+    <div class="mb-3">
+      <label for="passwordInput" class="form-label">
+        Account Password
+      </label>
+      <input
+        type="password"
+        class="form-control"
+        id="passwordInput"
+        name="password">
+    </div>
+
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+    <small>Don't have an account? <a href="/dashboard/register">Register here</a></small>
+  </form> 
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h1 class="page-title">Your Groups</h1>
+        <div class="groups-container">
+            {% if groups.length > 0 %}
+                <ul class="group-list">
+                {% for group in groups %}
+                    <li class="group shadow">
+                        <i class="bi bi-people group-icon"></i>
+                        <h3 class="group-title">{{ group.name }}</h3>
+                        <a href="/dashboard/group/detail/{{ group.id }}" class="btn btn-outline-secondary">View Group</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>You have no groups currently</p>
+            {% endif %}
+            <div class="group group-new shadow">
+                <h3>Create a Group</h3>
+                <a href="/dashboard/group/new" class="btn btn-success">Create</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

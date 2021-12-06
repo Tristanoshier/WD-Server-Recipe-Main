@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<br>
+<a href="{{ group_detail_url }}" class="btn btn-outline-secondary">
+  <i class="bi bi-arrow-left"></i>
+  Go Back
+</a>
+
+<form class="auth-form shadow rounded" method="post">
+  <legend>New API Key</legend>
+  {% if info %}
+    <div class="alert alert-danger" role="alert">
+      {{ info.message }}
+    </div>
+  {% endif %}
+
+  <div class="mb-3">
+    <label for="nameInput" class="form-label">
+      Key Description
+    </label>
+    <input class="form-control" type="text" name="name" id="nameInput" placeholder="Ex: 'Production' or 'Development'">
+  </div>
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-success">Create Api Key</button>
+  </div>
+
+
+</form>
+
+{% endblock %}

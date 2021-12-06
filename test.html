@@ -1,0 +1,58 @@
+
+<canvas height="400" width="400">
+</canvas>
+
+<p>Testing</p>
+
+<script>
+    let c = document.querySelector('canvas');
+    let ctx = c.getContext('2d');
+    // Draw Steps
+    ctx.fillStyle = "blue";
+    ctx.beginPath();
+    ctx.moveTo(15, 15);
+    ctx.lineTo(100, 45);
+    ctx.lineTo(60, 130);
+    ctx.fill();
+
+    ctx.fillStyle = "orange";
+    ctx.fillRect(130, 40, 30, 20);
+</script>
+
+
+<style>
+
+    p {
+        color: blue;
+        font-weight: bold;
+        font-size: 1.2em;
+        animation-name: colorchange;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+    @keyframes colorchange {
+        0% {
+            color: blue;
+        }
+        50% {
+            color: orange;
+        }
+        100% {
+            color: green;
+        }
+    }
+
+    h3, h4, p {
+        color: grey;
+    }
+
+    p a {
+        color: orange;
+    }
+
+
+
+</style>
