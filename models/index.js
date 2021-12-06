@@ -1,5 +1,5 @@
 const { ApiKey, Client, Group, Membership } = require('./dashboard');
-const { User, Profile } = require('./api');
+const { User, Profile, Recipe } = require('./api');
 
 // Associations go here!
 
@@ -22,11 +22,22 @@ Profile.belongsTo(User, {
 });
 User.hasOne(Profile);
 
+Recipe.belongsTo(ApiKey, {
+  foreignKey: "appId",
+});
+ApiKey.hasMany(Recipe);
+
+Recipe.belongsTo(User, {
+  foreignKey: "ownerId",
+});
+User.hasMany(Recipe);
+
 module.exports = {
   ApiKey,
   Client,
   Group,
   Membership,
   User,
-  Profile
+  Profile,
+  Recipe
 };

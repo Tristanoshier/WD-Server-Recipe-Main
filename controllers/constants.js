@@ -9,9 +9,7 @@ const ID_DOES_NOT_EXIST = ':id does not exist';
 const INCORRECT_EMAIL_PASSWORD = 'Incorrect Email and Password combination!';
 const INVALID_DATE = 'Invalid Date Format: MM-DD-YYYY';
 const INVALID_TOKEN = 'Invalid Token';
-const MEAL_CREATE_ERROR = 'Meal Create Error';
-const MEAL_ITEM_CREATE_ERROR = 'Meal Item Create Error';
-const MEAL_ITEM_OWNER_MISMATCH = "Meal item ID doesn't match Owner ID";
+const RECIPE_CREATE_ERROR = "Recipe Create Error";
 const MISSING_API_KEY = 'Missing API KEY';
 const MISSING_KEY_VALUE_PAIRS = 'Missing Key: Value Pairs';
 const NAN_ERROR = 'ID is Not a number';
@@ -20,8 +18,7 @@ const PROFILE_ALREADY_EXISTS = 'Profile already exists';
 const PROFILE_ERROR = 'Profile Endpoint Failed';
 const TITLE_DELETE_SUCCESS = 'Delete ran successfully';
 const TITLE_LOGIN_ERROR = 'Login Error';
-const TITLE_MEAL_ERROR = 'Meal Endpoint Error';
-const TITLE_MEAL_ITEM_ERROR = 'MealItem Item Error';
+const TITLE_RECIPE_ERROR = 'Recipe Endpoint Error';
 const TITLE_SIGNUP_ERROR = 'Signup Error';
 const TITLE_UPDATE_SUCCESS = 'Update Ran Successfully';
 const TOKEN_ERROR = 'Token Error';
@@ -39,9 +36,6 @@ module.exports = {
   INCORRECT_EMAIL_PASSWORD,
   INVALID_DATE,
   INVALID_TOKEN,
-  MEAL_CREATE_ERROR,
-  MEAL_ITEM_CREATE_ERROR,
-  MEAL_ITEM_OWNER_MISMATCH,
   MISSING_KEY_VALUE_PAIRS,
   MISSING_API_KEY,
   NAN_ERROR,
@@ -50,11 +44,11 @@ module.exports = {
   PROFILE_ERROR,
   TITLE_DELETE_SUCCESS,
   TITLE_LOGIN_ERROR,
-  TITLE_MEAL_ERROR,
-  TITLE_MEAL_ITEM_ERROR,
   TITLE_SIGNUP_ERROR,
   TITLE_UPDATE_SUCCESS,
   TOKEN_ERROR,
   USER_CREATED,
-  USER_FOUND
+  USER_FOUND,
+  RECIPE_CREATE_ERROR,
+  TITLE_RECIPE_ERROR
 };

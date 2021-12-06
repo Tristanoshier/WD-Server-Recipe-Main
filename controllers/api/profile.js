@@ -1,9 +1,7 @@
 const Services = require("../../services");
-const middlewares = require("../../middlewares");
 
 const validateApiKey = require("../../middlewares/validateApiKey");
 const validateSession = require("../../middlewares/validateSession");
-const { validateDate } = require("../../services/helpers");
 const {
   GET_SUCCESS,
   PROFILE_ERROR,
@@ -116,14 +114,14 @@ profileController
       const appId = await Services.apiKey.verifyApiKey(apiKey);
       if (!appId) throw new Error(GROUP_API_NOT_FOUND);
 
-      const mealRecordsDeleted = await Services.meal.remove({
+      const recipeRecordsDeleted = await Services.recipe.remove({
         ownerId,
         appId,
         id,
       });
 
       res.json({
-        mealRecordsDeleted,
+        recipeRecordsDeleted,
         info: {
           message: TITLE_DELETE_SUCCESS,
         },
@@ -131,7 +129,7 @@ profileController
     } catch (e) {
       if (e instanceof Error) {
         const errorMessage = {
-          title: TITLE_MEAL_ERROR,
+          title: TITLE_RECIPE_ERROR,
           info: {
             message: e.message,
           },

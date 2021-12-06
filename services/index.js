@@ -6,5 +6,6 @@ module.exports = {
   membership: require('./membershipService'),
   password: require('./passwordService'),
   profile: require('./profileService'),
-  user: require('./userService')
+  user: require('./userService'),
+  recipe: require('./recipeService')
 };
