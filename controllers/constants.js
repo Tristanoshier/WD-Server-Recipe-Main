@@ -24,6 +24,7 @@ const TITLE_UPDATE_SUCCESS = 'Update Ran Successfully';
 const TOKEN_ERROR = 'Token Error';
 const USER_CREATED = 'User created must login to get token';
 const USER_FOUND = 'User Found';
+const INVALID_RECIPE_CATEGORY = "Recipe category is not valid, please enter options: Breakfast, Lunch, Dinner, or Dessert"
 module.exports = {
   APIKEY_ERROR,
   CALORIE_SUCCESS,
@@ -50,5 +51,6 @@ module.exports = {
   USER_CREATED,
   USER_FOUND,
   RECIPE_CREATE_ERROR,
-  TITLE_RECIPE_ERROR
+  TITLE_RECIPE_ERROR,
+  INVALID_RECIPE_CATEGORY
 };

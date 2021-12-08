@@ -6,10 +6,12 @@ const {
     GET_SUCCESS,
     TITLE_RECIPE_ERROR,
     TITLE_DELETE_SUCCESS,
-    TITLE_UPDATE_SUCCESS
+    TITLE_UPDATE_SUCCESS,
+    INVALID_RECIPE_CATEGORY
 } = require('../constants');
 const validateApiKey = require('../../middlewares/validateApiKey');
 const validateSession = require('../../middlewares/validateSession');
+const { isValidRecipeCategory } = require('../../services/helpers');
 
 const recipeController = require('express').Router();
 
@@ -27,6 +29,10 @@ recipeController.route('/create').post(validateApiKey, validateSession, async (r
         const {
             appId
         } = req;
+
+        const isValidCategory = isValidRecipeCategory(category);
+
+        if (!isValidCategory) throw new Error(INVALID_RECIPE_CATEGORY);
 
         const recipeId = await Services.recipe.create({
             name,
