@@ -28,11 +28,16 @@ This application is one of the many pre-made API's for the Web Development Blue 
 - [ ] As a _User_ I would like to be able to log in to my account
 - [ ] As a _User_ I would like to be able to log out of my account
 
-### Browsing Stories
 
--
+### Recipe Stories
 
-# Developer Repo to Run locallay
+- [ ] As a _User_ I would like to be able to see all recipes created
+- [ ] As a _User_ I would like to be able to see all of my recipes under my account
+- [ ] As a _User_ I would like to be able to create a recipe
+- [ ] As a _User_ I would like to be able to update a recipe that I created 
+- [ ] As a _User_ I would like to be able to delete a recipe that I created
+
+# Developer Repo to Run locally
 
 1. `npm install` in the terminal
 1. Install nodemon globally if you haven't already `npm i -g nodemon`
@@ -73,6 +78,16 @@ Your port number will be whatever number you've specified in your .env file.
 | ---- | --------------------------------------------------------------------- | --------------------------------- |
 | GET  | <span style="color: aqua"> localhost:PORT/api/profile/get/ </span>    | Gets user and profile information |
 | PUT  | <span style="color: aqua"> localhost:PORT/api/profile/update/ </span> | Updates profile on the user       |
+### Recipe
+
+| Verb   | Endpoint                                                              | Function                          |
+| ------ | --------------------------------------------------------------------- | --------------------------------- |
+| GET    | <span style="color: aqua"> localhost:PORT/api/recipe/get/ </span>     | Gets all recipes created          |
+| GET    | <span style="color: aqua"> localhost:PORT/api/recipe/get/mine </span> | Gets recipes for user logged in   |
+| POST   | <span style="color: aqua"> localhost:PORT/api/recipe/create/ </span>  | posts a recipe associated to user |
+| PUT    | <span style="color: aqua"> localhost:PORT/api/recipe/update/ </span>  | Updates recipe based on the id    |
+| DELETE | <span style="color: aqua"> localhost:PORT/api/recipe/delete/ </span>  | Deletes recipe based on the id    |
+
 
 ## HTTP STATUS CODE SUMMARY
 
