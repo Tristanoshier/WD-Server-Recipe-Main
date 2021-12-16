@@ -9,7 +9,8 @@ This application is one of the many pre-made API's for the Web Development Blue 
 | JWT_SECRET              | Secret string used to encode and decode the JWT signature |
 
 ## DB Diagram Link
-
+[Recipe API DB Diagram](https://dbdiagram.io/d/611bdb052ecb310fc3cf38a4)
+Password is `1150!`
 ## Application Progress
 
 - [ ] Models
