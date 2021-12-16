@@ -1,0 +1,39 @@
+Table apikeys [headercolor: #222] {
+  id int [PK, increment]
+  key varchar
+  owner int
+}
+
+Table users [headercolor: #c0392b] {
+  id int [PK, increment]
+  email text [note: 'Unique']
+  password text
+  appId int
+}
+
+Table profiles [headercolor: #d35400] {
+  id int [PK, increment]
+  firstName text
+  favoriteCuisine text
+  userId int
+}
+
+Table recipies [headercolor: #16a085] {
+  id int [PK, increment]
+  name text
+  directions text
+  cookTime text
+  servingSize int
+  photoUrl text
+  category text
+  ownerId int
+  appId int
+}
+
+Ref: "users"."appId" < "apikeys"."id"
+
+Ref: "recipies"."ownerId" < "users"."id"
+
+Ref: "profiles"."userId" < "users"."id"
+
+Ref: "apikeys"."id" < "recipies"."appId"
